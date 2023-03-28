@@ -1,0 +1,21 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
+ */
+package com.portafolio.onex.security.repository;
+
+import com.portafolio.onex.security.entity.Role;
+import com.portafolio.onex.security.enums.RoleName;
+import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+/**
+ *
+ * @author x3n0g
+ */
+
+@Repository
+public interface IRoleRepository extends JpaRepository<Role, Long> {
+    Optional<Role> findByRoleName(RoleName roleName);
+}
