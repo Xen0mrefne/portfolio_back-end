@@ -46,8 +46,10 @@ public class PersonService implements IPersonService {
         person.setLastName(updatedPerson.getLastName());
         person.setTitle(updatedPerson.getTitle());
         person.setAbout(updatedPerson.getAbout());
-        person.setProfileImage(updatedPerson.getProfileImage());
-        person.setBannerImage(updatedPerson.getBannerImage());
+        person.setProfileImageUrl(updatedPerson.getProfileImageUrl());
+        person.setProfileImageName(updatedPerson.getProfileImageName());
+        person.setBannerImageUrl(updatedPerson.getBannerImageUrl());
+        person.setBannerImageName(updatedPerson.getBannerImageName());
         
         
         personRepo.save(person);

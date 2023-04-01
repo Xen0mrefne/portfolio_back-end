@@ -42,6 +42,9 @@ public class TechController {
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/techs")
     public ResponseEntity<Message> addTech(@RequestBody Tech newTech){
+        if (newTech.getName().isBlank()){
+            return new ResponseEntity(new Message("Tech name is required"), HttpStatus.BAD_REQUEST);
+        }
         
         iTech.addTech(newTech);
         return new ResponseEntity(new Message("Tech added successfully."), HttpStatus.OK);

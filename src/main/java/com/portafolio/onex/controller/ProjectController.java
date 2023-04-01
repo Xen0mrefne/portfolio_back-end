@@ -42,6 +42,19 @@ public class ProjectController {
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/projects")
     public ResponseEntity<Message> addProject(@RequestBody Project newProject){
+        if (newProject.getName().isBlank()) {
+             return new ResponseEntity(new Message("Project name is required"), HttpStatus.BAD_REQUEST);
+        }
+        if (newProject.getDescription().isBlank()) {
+             return new ResponseEntity(new Message("Description is required"), HttpStatus.BAD_REQUEST);
+        }
+        if (newProject.getDateCreated().isBlank()) {
+             return new ResponseEntity(new Message("Creation date is required"), HttpStatus.BAD_REQUEST);
+        }
+        if (newProject.getUrl().isBlank()) {
+             return new ResponseEntity(new Message("Project url is required"), HttpStatus.BAD_REQUEST);
+        }
+        
         
         iProject.addProject(newProject);
         return new ResponseEntity(new Message("Project added successfully."), HttpStatus.OK);
@@ -50,8 +63,17 @@ public class ProjectController {
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/projects/{id}")
     public ResponseEntity<Message> editProject(@PathVariable Long id,@RequestBody Project updatedProject){
-        if (updatedProject.getName().isBlank()){
-            return new ResponseEntity(new Message("Project name is required"), HttpStatus.BAD_REQUEST);
+        if (updatedProject.getName().isBlank()) {
+             return new ResponseEntity(new Message("Project name is required"), HttpStatus.BAD_REQUEST);
+        }
+        if (updatedProject.getDescription().isBlank()) {
+             return new ResponseEntity(new Message("Description is required"), HttpStatus.BAD_REQUEST);
+        }
+        if (updatedProject.getDateCreated().isBlank()) {
+             return new ResponseEntity(new Message("Creation date is required"), HttpStatus.BAD_REQUEST);
+        }
+        if (updatedProject.getUrl().isBlank()) {
+             return new ResponseEntity(new Message("Project url is required"), HttpStatus.BAD_REQUEST);
         }
         
         iProject.editProject(id, updatedProject);

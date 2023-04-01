@@ -30,7 +30,9 @@ public class Person {
     private String lastName;
     private String title;
     private String about;
-    private String profileImage;
-    private String bannerImage;
+    private String profileImageUrl;
+    private String profileImageName;
+    private String bannerImageUrl;
+    private String bannerImageName;
     
 }

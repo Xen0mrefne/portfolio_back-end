@@ -43,7 +43,10 @@ public class ExperienceController {
     @PostMapping("/experiences")
     public ResponseEntity<Message> addExperience(@RequestBody Experience newExperience){
         if (newExperience.getName().isBlank()){
-            return new ResponseEntity(new Message("Name is required"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Message("Position name is required"), HttpStatus.BAD_REQUEST);
+        }
+        if (newExperience.getCompany().isBlank()) {
+            return new ResponseEntity(new Message("Company name is required"), HttpStatus.BAD_REQUEST);
         }
         if(iExperience.existsByName(newExperience.getName())){
             return new ResponseEntity(new Message("Experience already exists"), HttpStatus.BAD_REQUEST);
@@ -57,7 +60,10 @@ public class ExperienceController {
     @PutMapping("/experiences/{id}")
     public ResponseEntity<Message> editExperience(@PathVariable Long id,@RequestBody Experience updatedExperience){
         if (updatedExperience.getName().isBlank()){
-            return new ResponseEntity(new Message("Name is required"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Message("Position name is required"), HttpStatus.BAD_REQUEST);
+        }
+        if (updatedExperience.getCompany().isBlank()) {
+            return new ResponseEntity(new Message("Company name is required"), HttpStatus.BAD_REQUEST);
         }
         
         iExperience.editExperience(id, updatedExperience);

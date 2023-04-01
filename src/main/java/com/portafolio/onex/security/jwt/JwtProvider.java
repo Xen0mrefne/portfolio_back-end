@@ -56,7 +56,7 @@ public class JwtProvider {
         } catch (UnsupportedJwtException e) {
             logger.error("Unsupported Token.");
         } catch (ExpiredJwtException e) {
-            logger.error("Expired Token");
+            logger.error("Expired Token.");
         } catch (IllegalArgumentException e) {
             logger.error("Empty Token.");
         } catch (SignatureException e) {

@@ -42,6 +42,9 @@ public class SkillController {
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/skills")
     public ResponseEntity<Message> addSkill(@RequestBody Skill newSkill){
+        if (newSkill.getName().isBlank()){
+            return new ResponseEntity(new Message("Skill name is required"), HttpStatus.BAD_REQUEST);
+        }
         
         iSkill.addSkill(newSkill);
         return new ResponseEntity(new Message("Skill added successfully."), HttpStatus.OK);

@@ -41,6 +41,19 @@ public class PersonController {
     @GetMapping("/persons")
     public ResponseEntity<List<Person>> getAllPersons(){
         List<Person> personList = iPerson.getAllPersons();
+        
+        if (personList.isEmpty()) {
+            Person person = new Person();
+            
+            person.setFirstName("First name");
+            person.setLastName("Last name");
+            person.setTitle("Title");
+            person.setAbout("About me");
+            
+            iPerson.addPerson(person);
+            personList.add(person);
+        }
+        
         return new ResponseEntity(personList, HttpStatus.OK);
     }
     
@@ -50,24 +63,46 @@ public class PersonController {
         return new ResponseEntity(person, HttpStatus.OK);
     }
     
-    @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping("/persons")
-    public ResponseEntity<Message> addPerson(@RequestBody Person newPerson){
-        iPerson.addPerson(newPerson);
-        return new ResponseEntity(new Message("Person added successfully."), HttpStatus.OK);
-    }
+//    @PreAuthorize("hasRole('ADMIN')")
+//    @PostMapping("/persons")
+//    public ResponseEntity<Message> addPerson(@RequestBody Person newPerson){
+//        
+//        if (newPerson.getFirstName().isBlank()) {
+//             return new ResponseEntity(new Message("First name is required"), HttpStatus.BAD_REQUEST);
+//        }
+//        if (newPerson.getLastName().isBlank()) {
+//             return new ResponseEntity(new Message("Last name is required"), HttpStatus.BAD_REQUEST);
+//        }
+//        if (newPerson.getTitle().isBlank()) {
+//             return new ResponseEntity(new Message("Title is required"), HttpStatus.BAD_REQUEST);
+//        }
+//        
+//        iPerson.addPerson(newPerson);
+//        return new ResponseEntity(new Message("Person added successfully."), HttpStatus.OK);
+//    }
     
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/persons/{id}")
     public ResponseEntity<Message> editPerson(@PathVariable Long id, @RequestBody Person updatedPerson){
+        
+        if (updatedPerson.getFirstName().isBlank()) {
+             return new ResponseEntity(new Message("First name is required"), HttpStatus.BAD_REQUEST);
+        }
+        if (updatedPerson.getLastName().isBlank()) {
+             return new ResponseEntity(new Message("Last name is required"), HttpStatus.BAD_REQUEST);
+        }
+        if (updatedPerson.getTitle().isBlank()) {
+             return new ResponseEntity(new Message("Title is required"), HttpStatus.BAD_REQUEST);
+        }
+        
         iPerson.editPerson(id, updatedPerson);
         return new ResponseEntity(new Message("Person edited successfully."), HttpStatus.OK);
     }
     
-    @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("/persons/{id}")
-    public ResponseEntity<Message> deletePerson(@PathVariable Long id){
-        iPerson.deletePerson(id);
-        return new ResponseEntity(new Message("Person deleted successfully."), HttpStatus.OK);
-    }
+//    @PreAuthorize("hasRole('ADMIN')")
+//    @DeleteMapping("/persons/{id}")
+//    public ResponseEntity<Message> deletePerson(@PathVariable Long id){
+//        iPerson.deletePerson(id);
+//        return new ResponseEntity(new Message("Person deleted successfully."), HttpStatus.OK);
+//    }
 }

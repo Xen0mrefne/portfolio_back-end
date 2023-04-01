@@ -42,6 +42,15 @@ public class DegreeController {
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/degrees")
     public ResponseEntity<Message> addDegree(@RequestBody Degree newDegree){
+        if (newDegree.getTitle().isBlank()){
+            return new ResponseEntity(new Message("Degree title is required"), HttpStatus.BAD_REQUEST);
+        }
+        if (newDegree.getInstitution().isBlank()){
+            return new ResponseEntity(new Message("Institution is required"), HttpStatus.BAD_REQUEST);
+        }
+        if (newDegree.getStartDate().isBlank()){
+            return new ResponseEntity(new Message("Start date is required"), HttpStatus.BAD_REQUEST);
+        }
         
         iDegree.addDegree(newDegree);
         return new ResponseEntity(new Message("Degree added successfully."), HttpStatus.OK);
@@ -51,7 +60,13 @@ public class DegreeController {
     @PutMapping("/degrees/{id}")
     public ResponseEntity<Message> editDegree(@PathVariable Long id,@RequestBody Degree updatedDegree){
         if (updatedDegree.getTitle().isBlank()){
-            return new ResponseEntity(new Message("Title is required"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Message("Degree title is required"), HttpStatus.BAD_REQUEST);
+        }
+        if (updatedDegree.getInstitution().isBlank()){
+            return new ResponseEntity(new Message("Institution is required"), HttpStatus.BAD_REQUEST);
+        }
+        if (updatedDegree.getStartDate().isBlank()){
+            return new ResponseEntity(new Message("Start date is required"), HttpStatus.BAD_REQUEST);
         }
         
         iDegree.editDegree(id, updatedDegree);
