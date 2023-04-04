@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@CrossOrigin(origins = "**")
+@CrossOrigin(origins = {"https://angular-portfolio-d72e0.web.app", "http://localhost:4200"})
 public class ProjectController {
     
     @Autowired
