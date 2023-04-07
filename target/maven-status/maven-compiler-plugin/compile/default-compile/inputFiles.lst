@@ -3,6 +3,7 @@ C:\Users\x3n0g\Desktop\master\programming\argentina_programa\portfolio_back-end\
 C:\Users\x3n0g\Desktop\master\programming\argentina_programa\portfolio_back-end\src\main\java\com\portafolio\onex\model\Person.java
 C:\Users\x3n0g\Desktop\master\programming\argentina_programa\portfolio_back-end\src\main\java\com\portafolio\onex\security\entity\User.java
 C:\Users\x3n0g\Desktop\master\programming\argentina_programa\portfolio_back-end\src\main\java\com\portafolio\onex\security\service\UserDetailsImpl.java
+C:\Users\x3n0g\Desktop\master\programming\argentina_programa\portfolio_back-end\src\main\java\com\portafolio\onex\dto\DegreeDto.java
 C:\Users\x3n0g\Desktop\master\programming\argentina_programa\portfolio_back-end\src\main\java\com\portafolio\onex\repository\ExperienceRepository.java
 C:\Users\x3n0g\Desktop\master\programming\argentina_programa\portfolio_back-end\src\main\java\com\portafolio\onex\service\ProjectService.java
 C:\Users\x3n0g\Desktop\master\programming\argentina_programa\portfolio_back-end\src\main\java\com\portafolio\onex\security\entity\Role.java
@@ -21,6 +22,7 @@ C:\Users\x3n0g\Desktop\master\programming\argentina_programa\portfolio_back-end\
 C:\Users\x3n0g\Desktop\master\programming\argentina_programa\portfolio_back-end\src\main\java\com\portafolio\onex\security\repository\IUserRepository.java
 C:\Users\x3n0g\Desktop\master\programming\argentina_programa\portfolio_back-end\src\main\java\com\portafolio\onex\service\IDegreeService.java
 C:\Users\x3n0g\Desktop\master\programming\argentina_programa\portfolio_back-end\src\main\java\com\portafolio\onex\security\MainSecurity.java
+C:\Users\x3n0g\Desktop\master\programming\argentina_programa\portfolio_back-end\src\main\java\com\portafolio\onex\dto\SkillDto.java
 C:\Users\x3n0g\Desktop\master\programming\argentina_programa\portfolio_back-end\src\main\java\com\portafolio\onex\security\service\RoleService.java
 C:\Users\x3n0g\Desktop\master\programming\argentina_programa\portfolio_back-end\src\main\java\com\portafolio\onex\controller\ExperienceController.java
 C:\Users\x3n0g\Desktop\master\programming\argentina_programa\portfolio_back-end\src\main\java\com\portafolio\onex\security\dto\LoginUser.java
@@ -34,9 +36,12 @@ C:\Users\x3n0g\Desktop\master\programming\argentina_programa\portfolio_back-end\
 C:\Users\x3n0g\Desktop\master\programming\argentina_programa\portfolio_back-end\src\main\java\com\portafolio\onex\service\IExperienceService.java
 C:\Users\x3n0g\Desktop\master\programming\argentina_programa\portfolio_back-end\src\main\java\com\portafolio\onex\security\dto\NewUser.java
 C:\Users\x3n0g\Desktop\master\programming\argentina_programa\portfolio_back-end\src\main\java\com\portafolio\onex\security\jwt\JwtProvider.java
+C:\Users\x3n0g\Desktop\master\programming\argentina_programa\portfolio_back-end\src\main\java\com\portafolio\onex\dto\PersonDto.java
 C:\Users\x3n0g\Desktop\master\programming\argentina_programa\portfolio_back-end\src\main\java\com\portafolio\onex\OnexApplication.java
 C:\Users\x3n0g\Desktop\master\programming\argentina_programa\portfolio_back-end\src\main\java\com\portafolio\onex\service\ExperienceService.java
+C:\Users\x3n0g\Desktop\master\programming\argentina_programa\portfolio_back-end\src\main\java\com\portafolio\onex\dto\ProjectDto.java
 C:\Users\x3n0g\Desktop\master\programming\argentina_programa\portfolio_back-end\src\main\java\com\portafolio\onex\controller\DegreeController.java
+C:\Users\x3n0g\Desktop\master\programming\argentina_programa\portfolio_back-end\src\main\java\com\portafolio\onex\dto\TechDto.java
 C:\Users\x3n0g\Desktop\master\programming\argentina_programa\portfolio_back-end\src\main\java\com\portafolio\onex\model\TechType.java
 C:\Users\x3n0g\Desktop\master\programming\argentina_programa\portfolio_back-end\src\main\java\com\portafolio\onex\service\IPersonService.java
 C:\Users\x3n0g\Desktop\master\programming\argentina_programa\portfolio_back-end\src\main\java\com\portafolio\onex\service\ITechService.java

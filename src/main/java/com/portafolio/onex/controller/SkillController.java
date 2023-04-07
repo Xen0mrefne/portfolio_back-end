@@ -4,9 +4,13 @@
  */
 package com.portafolio.onex.controller;
 
+import com.portafolio.onex.dto.SkillDto;
 import com.portafolio.onex.model.Message;
+import com.portafolio.onex.model.Person;
 import com.portafolio.onex.model.Skill;
+import com.portafolio.onex.service.IPersonService;
 import com.portafolio.onex.service.ISkillService;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,24 +31,58 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@CrossOrigin(origins = {"https://angular-portfolio-d72e0.web.app", "http://localhost:4200"})
+@CrossOrigin(origins = {"https://ortega-portfolio.web.app", "http://localhost:4200"})
 public class SkillController {
+    
+    @Autowired
+    IPersonService iPerson;
     
     @Autowired
     ISkillService iSkill;
     
     @GetMapping("/skills")
-    public ResponseEntity<List<Skill>> getAllSkill(){
+    public ResponseEntity<List<SkillDto>> getAllSkill(){
         List<Skill> skillList = iSkill.getAllSkills();
-        return new ResponseEntity(skillList, HttpStatus.OK);
+        List<SkillDto> dtoList = new ArrayList<>();
+
+        for (Skill skill : skillList) {
+            SkillDto skillDto = new SkillDto(
+                    skill.getId(),
+                    skill.getName(),
+                    skill.getPercent(),
+                    skill.getPerson().getId());
+            
+            dtoList.add(skillDto);
+        }
+        return new ResponseEntity(dtoList, HttpStatus.OK);
+    }
+    
+    @GetMapping("persons/{personId}/skills")
+    public ResponseEntity<List<SkillDto>> getPersonSkills(@PathVariable Long personId){
+        List<Skill> skillList = iSkill.getSkillsByPerson(personId);
+        List<SkillDto> dtoList = new ArrayList<>();
+
+        for (Skill skill : skillList) {
+            SkillDto skillDto = new SkillDto(
+                    skill.getId(),
+                    skill.getName(),
+                    skill.getPercent(),
+                    skill.getPerson().getId());
+            
+            dtoList.add(skillDto);
+        }
+        return new ResponseEntity(dtoList, HttpStatus.OK);
     }
     
     @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping("/skills")
-    public ResponseEntity<Message> addSkill(@RequestBody Skill newSkill){
+    @PostMapping("persons/{personId}/skills")
+    public ResponseEntity<Message> addSkill(@PathVariable Long personId, @RequestBody Skill newSkill){
         if (newSkill.getName().isBlank()){
             return new ResponseEntity(new Message("Skill name is required"), HttpStatus.BAD_REQUEST);
         }
+        
+        Person person = iPerson.getPerson(personId);
+        newSkill.setPerson(person);
         
         iSkill.addSkill(newSkill);
         return new ResponseEntity(new Message("Skill added successfully."), HttpStatus.OK);

@@ -15,6 +15,8 @@ public interface IDegreeService {
     
     public List<Degree> getAllDegrees();
     
+    public List<Degree> getDegreesByPerson(Long id);
+    
     public void addDegree(Degree newDegree);
     
     public void editDegree(Long id, Degree updatedDegree);

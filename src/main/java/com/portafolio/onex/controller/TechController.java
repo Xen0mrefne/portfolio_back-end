@@ -4,9 +4,13 @@
  */
 package com.portafolio.onex.controller;
 
+import com.portafolio.onex.dto.TechDto;
 import com.portafolio.onex.model.Message;
+import com.portafolio.onex.model.Person;
 import com.portafolio.onex.model.Tech;
+import com.portafolio.onex.service.IPersonService;
 import com.portafolio.onex.service.ITechService;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,24 +31,58 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@CrossOrigin(origins = {"https://angular-portfolio-d72e0.web.app", "http://localhost:4200"})
+@CrossOrigin(origins = {"https://ortega-portfolio.web.app", "http://localhost:4200"})
 public class TechController {
+    
+    @Autowired
+    IPersonService iPerson;
     
     @Autowired
     ITechService iTech;
     
     @GetMapping("/techs")
-    public ResponseEntity<List<Tech>> getAllTech(){
+    public ResponseEntity<List<TechDto>> getAllTech(){
         List<Tech> techList = iTech.getAllTechs();
-        return new ResponseEntity(techList, HttpStatus.OK);
+        List<TechDto> dtoList = new ArrayList<>();
+
+        for (Tech tech : techList) {
+            TechDto techDto = new TechDto(
+                    tech.getId(),
+                    tech.getName(),
+                    tech.getTechType(),
+                    tech.getPerson().getId());
+            
+            dtoList.add(techDto);
+        }
+        return new ResponseEntity(dtoList, HttpStatus.OK);
+    }
+    
+    @GetMapping("persons/{personId}/techs")
+    public ResponseEntity<List<TechDto>> getAllTech(@PathVariable Long personId){
+        List<Tech> techList = iTech.getTechsByPerson(personId);
+        List<TechDto> dtoList = new ArrayList<>();
+
+        for (Tech tech : techList) {
+            TechDto techDto = new TechDto(
+                    tech.getId(),
+                    tech.getName(),
+                    tech.getTechType(),
+                    tech.getPerson().getId());
+            
+            dtoList.add(techDto);
+        }
+        return new ResponseEntity(dtoList, HttpStatus.OK);
     }
     
     @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping("/techs")
-    public ResponseEntity<Message> addTech(@RequestBody Tech newTech){
+    @PostMapping("persons/{personId}/techs")
+    public ResponseEntity<Message> addTech(@PathVariable Long personId, @RequestBody Tech newTech){
         if (newTech.getName().isBlank()){
             return new ResponseEntity(new Message("Tech name is required"), HttpStatus.BAD_REQUEST);
         }
+        
+        Person person = iPerson.getPerson(personId);
+        newTech.setPerson(person);
         
         iTech.addTech(newTech);
         return new ResponseEntity(new Message("Tech added successfully."), HttpStatus.OK);

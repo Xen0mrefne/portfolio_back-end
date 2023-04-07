@@ -25,6 +25,11 @@ public class DegreeService implements IDegreeService {
     public List<Degree> getAllDegrees() {
         return degreeRepo.findAll();
     }
+    
+    @Override
+    public List<Degree> getDegreesByPerson(Long id) {
+        return degreeRepo.findByPersonId(id);
+    }
 
     @Override
     public void addDegree(Degree newDegree) {

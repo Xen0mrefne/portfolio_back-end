@@ -27,6 +27,11 @@ public class SkillService implements ISkillService {
     }
 
     @Override
+    public List<Skill> getSkillsByPerson(Long personId) {
+        return skillRepo.findByPersonId(personId);
+    }
+
+    @Override
     public void addSkill(Skill newSkill) {
         skillRepo.save(newSkill);
     }

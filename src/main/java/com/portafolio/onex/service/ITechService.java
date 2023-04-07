@@ -15,6 +15,8 @@ public interface ITechService {
     
     public List<Tech> getAllTechs();
     
+    public List<Tech> getTechsByPerson(Long personId);
+    
     public void addTech(Tech newTech);
     
     public void editTech(Long id, Tech updatedTech);

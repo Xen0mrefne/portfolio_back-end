@@ -5,6 +5,7 @@
 package com.portafolio.onex.repository;
 
 import com.portafolio.onex.model.Experience;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -17,7 +18,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ExperienceRepository extends JpaRepository<Experience, Long> {
     
-    public Optional<Experience> findByName(String name);
-    public boolean existsByName(String name);
+    public List<Experience> findByPersonId(Long personId);
     
 }

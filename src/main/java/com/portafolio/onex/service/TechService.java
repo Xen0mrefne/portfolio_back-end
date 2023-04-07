@@ -27,6 +27,11 @@ public class TechService implements ITechService {
     }
 
     @Override
+    public List<Tech> getTechsByPerson(Long personId) {
+        return techRepo.findByPersonId(personId);
+    }
+
+    @Override
     public void addTech(Tech newTech) {
         techRepo.save(newTech);
     }

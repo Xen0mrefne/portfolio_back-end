@@ -14,6 +14,8 @@ import java.util.List;
 public interface IProjectService {
     
     public List<Project> getAllProjects();
+        
+    public List<Project> getProjectsByPerson(Long personId);
     
     public void addProject(Project newProject);
     

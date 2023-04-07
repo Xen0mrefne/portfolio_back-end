@@ -16,11 +16,11 @@ public interface IExperienceService {
     
     public List<Experience> getAllExperience();
     
+    public List<Experience> getExperiencesByPerson(Long id);
+    
     public void addExperience(Experience newExperience);
     
     public void editExperience(Long id, Experience updatedExperience);
     
     public void deleteExperience(Long id);
-    
-    public boolean existsByName(String name);
 }

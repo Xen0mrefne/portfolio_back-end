@@ -27,6 +27,11 @@ public class ExperienceService implements IExperienceService {
     }
 
     @Override
+    public List<Experience> getExperiencesByPerson(Long id) {
+        return experienceRepo.findByPersonId(id);
+    }
+
+    @Override
     public void addExperience(Experience newExperience) {
         experienceRepo.save(newExperience);
     }
@@ -46,12 +51,5 @@ public class ExperienceService implements IExperienceService {
     public void deleteExperience(Long id) {
         experienceRepo.deleteById(id);
     }
-
-    @Override
-    public boolean existsByName(String name) {
-        return experienceRepo.existsByName(name);
-    }
-    
-    
     
 }

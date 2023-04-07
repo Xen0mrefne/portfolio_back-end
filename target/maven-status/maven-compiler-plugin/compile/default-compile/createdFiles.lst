@@ -1,4 +1,5 @@
 com\portafolio\onex\OnexApplication.class
+com\portafolio\onex\dto\ProjectDto.class
 com\portafolio\onex\controller\PersonController.class
 com\portafolio\onex\service\TechService.class
 com\portafolio\onex\model\Person.class
@@ -8,8 +9,10 @@ com\portafolio\onex\repository\TechRepository.class
 com\portafolio\onex\repository\ProjectRepository.class
 com\portafolio\onex\security\repository\IRoleRepository.class
 com\portafolio\onex\controller\ExperienceController.class
+com\portafolio\onex\dto\PersonDto.class
 com\portafolio\onex\security\service\UserDetailsImpl.class
 com\portafolio\onex\model\Tech.class
+com\portafolio\onex\dto\SkillDto.class
 com\portafolio\onex\security\controller\AuthController.class
 com\portafolio\onex\security\repository\IUserRepository.class
 com\portafolio\onex\controller\ProjectController.class
@@ -33,12 +36,14 @@ com\portafolio\onex\repository\ExperienceRepository.class
 com\portafolio\onex\service\ExperienceService.class
 com\portafolio\onex\model\TechType.class
 com\portafolio\onex\security\service\UserService.class
+com\portafolio\onex\dto\TechDto.class
 com\portafolio\onex\service\PersonService.class
 com\portafolio\onex\service\SkillService.class
 com\portafolio\onex\service\IExperienceService.class
 com\portafolio\onex\security\MainSecurity.class
 com\portafolio\onex\service\IProjectService.class
 com\portafolio\onex\dto\ExperienceDto.class
+com\portafolio\onex\dto\DegreeDto.class
 com\portafolio\onex\model\Skill.class
 com\portafolio\onex\controller\TechController.class
 com\portafolio\onex\model\Experience.class

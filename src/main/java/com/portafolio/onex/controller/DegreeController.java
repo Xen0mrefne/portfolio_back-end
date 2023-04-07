@@ -4,9 +4,13 @@
  */
 package com.portafolio.onex.controller;
 
+import com.portafolio.onex.dto.DegreeDto;
 import com.portafolio.onex.model.Degree;
 import com.portafolio.onex.model.Message;
+import com.portafolio.onex.model.Person;
 import com.portafolio.onex.service.IDegreeService;
+import com.portafolio.onex.service.IPersonService;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,21 +31,58 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@CrossOrigin(origins = {"https://angular-portfolio-d72e0.web.app", "http://localhost:4200"})
+@CrossOrigin(origins = {"https://ortega-portfolio.web.app", "http://localhost:4200"})
 public class DegreeController {
+    
+    @Autowired
+    IPersonService iPerson;
     
     @Autowired
     IDegreeService iDegree;
     
     @GetMapping("/degrees")
-    public ResponseEntity<List<Degree>> getAllDegree(){
+    public ResponseEntity<List<DegreeDto>> getAllDegrees(){
         List<Degree> degreeList = iDegree.getAllDegrees();
-        return new ResponseEntity(degreeList, HttpStatus.OK);
+        List<DegreeDto> dtoList = new ArrayList<>();
+        
+        for (Degree degree: degreeList) {
+            DegreeDto degreeDto = new DegreeDto(
+                degree.getId(),
+                degree.getTitle(),
+                degree.getInstitution(),
+                degree.getStartDate(),
+                degree.getEndDate(),
+                degree.getPerson().getId());
+            
+            dtoList.add(degreeDto);
+        }
+        
+        return new ResponseEntity(dtoList, HttpStatus.OK);
+    }
+    
+    @GetMapping("persons/{personId}/degrees")
+    public ResponseEntity<List<DegreeDto>> getPersonDegrees(@PathVariable Long personId){
+        List<Degree> degreeList = iDegree.getDegreesByPerson(personId);
+        List<DegreeDto> dtoList = new ArrayList<>();
+        
+        for (Degree degree: degreeList) {
+            DegreeDto degreeDto = new DegreeDto(
+                degree.getId(),
+                degree.getTitle(),
+                degree.getInstitution(),
+                degree.getStartDate(),
+                degree.getEndDate(),
+                degree.getPerson().getId());
+            
+            dtoList.add(degreeDto);
+        }
+        
+        return new ResponseEntity(dtoList, HttpStatus.OK);
     }
     
     @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping("/degrees")
-    public ResponseEntity<Message> addDegree(@RequestBody Degree newDegree){
+    @PostMapping("persons/{personId}/degrees")
+    public ResponseEntity<Message> addDegree(@PathVariable Long personId, @RequestBody Degree newDegree){
         if (newDegree.getTitle().isBlank()){
             return new ResponseEntity(new Message("Degree title is required"), HttpStatus.BAD_REQUEST);
         }
@@ -51,6 +92,9 @@ public class DegreeController {
         if (newDegree.getStartDate().isBlank()){
             return new ResponseEntity(new Message("Start date is required"), HttpStatus.BAD_REQUEST);
         }
+        
+        Person person = iPerson.getPerson(personId);
+        newDegree.setPerson(person);
         
         iDegree.addDegree(newDegree);
         return new ResponseEntity(new Message("Degree added successfully."), HttpStatus.OK);

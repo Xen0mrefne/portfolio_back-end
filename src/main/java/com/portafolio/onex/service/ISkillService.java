@@ -15,6 +15,8 @@ public interface ISkillService {
     
     public List<Skill> getAllSkills();
     
+    public List<Skill> getSkillsByPerson(Long id);
+    
     public void addSkill(Skill newSkill);
     
     public void editSkill(Long id, Skill updatedSkill);

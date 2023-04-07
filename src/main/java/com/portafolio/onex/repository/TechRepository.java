@@ -5,6 +5,7 @@
 package com.portafolio.onex.repository;
 
 import com.portafolio.onex.model.Tech;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,5 +16,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TechRepository extends JpaRepository<Tech, Long> {
+    
+    public List<Tech> findByPersonId(Long id);
     
 }

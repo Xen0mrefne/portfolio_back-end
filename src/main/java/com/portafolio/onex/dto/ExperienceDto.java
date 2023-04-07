@@ -16,15 +16,20 @@ import lombok.Setter;
 @Getter @Setter
 public class ExperienceDto {
     
-    @NotBlank
+    private Long id;
     private String name;
-    
-    @NotBlank
+    private String company;
     private String description;
+    private Long personId;
 
-    public ExperienceDto(String name, String description) {
+    public ExperienceDto(Long id, String name, String company, String description, Long personId) {
+        this.id = id;
         this.name = name;
+        this.company = company;
         this.description = description;
+        this.personId = personId;
     }
+    
+    
     
 }

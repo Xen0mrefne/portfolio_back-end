@@ -25,6 +25,11 @@ public class ProjectService implements IProjectService {
     public List<Project> getAllProjects() {
         return projectRepo.findAll();
     }
+    
+    @Override
+    public List<Project> getProjectsByPerson(Long personId){
+        return projectRepo.findByPersonId(personId);
+    }
 
     @Override
     public void addProject(Project newProject) {
