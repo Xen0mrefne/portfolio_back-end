@@ -49,7 +49,6 @@ public class ProjectController {
                     project.getId(),
                     project.getName(),
                     project.getDescription(),
-                    project.getDateCreated(),
                     project.getUrl(),
                     project.getPerson().getId());
 
@@ -68,7 +67,6 @@ public class ProjectController {
                     project.getId(),
                     project.getName(),
                     project.getDescription(),
-                    project.getDateCreated(),
                     project.getUrl(),
                     project.getPerson().getId());
 
@@ -86,11 +84,11 @@ public class ProjectController {
         if (newProject.getDescription().isBlank()) {
             return new ResponseEntity(new Message("Description is required"), HttpStatus.BAD_REQUEST);
         }
-        if (newProject.getDateCreated().isBlank()) {
-            return new ResponseEntity(new Message("Creation date is required"), HttpStatus.BAD_REQUEST);
-        }
         if (newProject.getUrl().isBlank()) {
             return new ResponseEntity(new Message("Project url is required"), HttpStatus.BAD_REQUEST);
+        }
+        if (!newProject.getUrl().contains("https://github.com")) {
+            return new ResponseEntity(new Message("Sorry, that's is not a valid github url"), HttpStatus.BAD_REQUEST);
         }
 
         Person person = iPerson.getPerson(personId);
@@ -109,11 +107,11 @@ public class ProjectController {
         if (updatedProject.getDescription().isBlank()) {
             return new ResponseEntity(new Message("Description is required"), HttpStatus.BAD_REQUEST);
         }
-        if (updatedProject.getDateCreated().isBlank()) {
-            return new ResponseEntity(new Message("Creation date is required"), HttpStatus.BAD_REQUEST);
-        }
         if (updatedProject.getUrl().isBlank()) {
             return new ResponseEntity(new Message("Project url is required"), HttpStatus.BAD_REQUEST);
+        }
+        if (!updatedProject.getUrl().contains("https://github.com")) {
+            return new ResponseEntity(new Message("Sorry, that's is not a valid github url"), HttpStatus.BAD_REQUEST);
         }
 
         iProject.editProject(id, updatedProject);

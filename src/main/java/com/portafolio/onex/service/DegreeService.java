@@ -42,6 +42,7 @@ public class DegreeService implements IDegreeService {
         
         degree.setTitle(updatedDegree.getTitle());
         degree.setInstitution(updatedDegree.getInstitution());
+        degree.setFinished(updatedDegree.isFinished());
         degree.setStartDate(updatedDegree.getStartDate());
         degree.setEndDate(updatedDegree.getEndDate());
         

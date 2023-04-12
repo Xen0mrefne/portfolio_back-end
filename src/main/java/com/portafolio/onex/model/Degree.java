@@ -4,7 +4,7 @@
  */
 package com.portafolio.onex.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -41,10 +42,13 @@ public class Degree {
     @NotBlank
     private String institution;
     
-    @NotBlank
-    private String startDate;
+    private boolean finished;
     
-    private String endDate;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date startDate;
+    
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date endDate;
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "person_id", nullable = false)

@@ -50,6 +50,7 @@ public class DegreeController {
                 degree.getId(),
                 degree.getTitle(),
                 degree.getInstitution(),
+                degree.isFinished(),
                 degree.getStartDate(),
                 degree.getEndDate(),
                 degree.getPerson().getId());
@@ -70,6 +71,7 @@ public class DegreeController {
                 degree.getId(),
                 degree.getTitle(),
                 degree.getInstitution(),
+                degree.isFinished(),
                 degree.getStartDate(),
                 degree.getEndDate(),
                 degree.getPerson().getId());
@@ -89,8 +91,11 @@ public class DegreeController {
         if (newDegree.getInstitution().isBlank()){
             return new ResponseEntity(new Message("Institution is required"), HttpStatus.BAD_REQUEST);
         }
-        if (newDegree.getStartDate().isBlank()){
+        if (newDegree.getStartDate() == null){
             return new ResponseEntity(new Message("Start date is required"), HttpStatus.BAD_REQUEST);
+        }
+        if (newDegree.isFinished() == false) {
+            newDegree.setEndDate(null);
         }
         
         Person person = iPerson.getPerson(personId);
@@ -109,7 +114,7 @@ public class DegreeController {
         if (updatedDegree.getInstitution().isBlank()){
             return new ResponseEntity(new Message("Institution is required"), HttpStatus.BAD_REQUEST);
         }
-        if (updatedDegree.getStartDate().isBlank()){
+        if (updatedDegree.getStartDate() == null){
             return new ResponseEntity(new Message("Start date is required"), HttpStatus.BAD_REQUEST);
         }
         

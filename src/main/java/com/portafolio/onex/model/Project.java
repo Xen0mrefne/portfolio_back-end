@@ -42,9 +42,6 @@ public class Project {
     private String description;
     
     @NotBlank
-    private String dateCreated;
-    
-    @NotBlank
     private String url;
     
     @ManyToOne(fetch = FetchType.LAZY)

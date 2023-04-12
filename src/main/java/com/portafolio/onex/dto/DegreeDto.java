@@ -4,6 +4,8 @@
  */
 package com.portafolio.onex.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,8 +24,13 @@ public class DegreeDto {
     private Long id;
     private String title;
     private String institution;
-    private String startDate;
-    private String endDate;
+    private boolean finished;
+    
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date startDate;
+    
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date endDate;
     private Long personId;
 
     

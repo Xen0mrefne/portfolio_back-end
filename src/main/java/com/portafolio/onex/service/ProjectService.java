@@ -42,7 +42,6 @@ public class ProjectService implements IProjectService {
         
         project.setName(updatedProject.getName());
         project.setDescription(updatedProject.getDescription());
-        project.setDateCreated(updatedProject.getDateCreated());
         project.setUrl(updatedProject.getUrl());
         
         projectRepo.save(project);
